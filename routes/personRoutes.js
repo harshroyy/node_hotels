@@ -20,6 +20,25 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.get('/', async (req, res) => {
+    try {
+        // Fetch all documents from the Person collection
+        const response = await Person.find({});
+        
+        // Log the fetch action
+        console.log('All persons fetched');
+        
+        // Send the response with status 200
+        res.status(200).json(response);
+    } catch (err) {
+        // Log the error
+        console.log(err);
+        
+        // Send a 500 status with an error message if something goes wrong
+        res.status(500).json({ error: "Server failed" });
+    }
+});
+
 
 
 router.get('/:workType', async(req, res) => {
